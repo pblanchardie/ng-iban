@@ -55,9 +55,6 @@
 	  return {
 	    restrict: 'A',
 	    require: 'ngModel',
-	    scope: {
-	      ngModel: '='
-	    },
 	    link: function link(scope, elem, attrs, ctrl) {
 	      var isValidIban, parseIban;
 	      parseIban = function parseIban(value) {
@@ -102,7 +99,7 @@
 	          if (valid) {
 	            parsed = parseIban(modelValue);
 	            if (parsed !== modelValue) {
-	              scope.ngModel = parsed;
+	              attrs.ngModel = parsed;
 	            }
 	            return pretty = IBAN.printFormat(parsed);
 	          } else {

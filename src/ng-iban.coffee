@@ -7,8 +7,6 @@ angular
   .directive 'ngIban', ->
     restrict: 'A'
     require: 'ngModel'
-    scope:
-      ngModel: '='
     link: (scope, elem, attrs, ctrl) ->
       parseIban = (value) ->
         if value? then IBAN.electronicFormat(value) else undefined
@@ -41,7 +39,7 @@ angular
           if valid
             parsed = parseIban modelValue # This becomes the $modelValue
             if parsed isnt modelValue
-              scope.ngModel = parsed
+              attrs.ngModel = parsed
             pretty = IBAN.printFormat parsed # This the $viewValue
           else modelValue
 
